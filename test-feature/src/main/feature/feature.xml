@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="dms-features-${project.version}"
+          xmlns="http://karaf.apache.org/xmlns/features/v1.6.0"
+          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.6.0 http://karaf.apache.org/xmlns/features/v1.6.0"
+>
+
+    <!-- Karaf Standard feature repository -->
+    <repository>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</repository>
+    <repository>mvn:org.apache.karaf.features/enterprise/${karaf.version}/xml/features</repository>
+
+
+    <feature name="test" version="${project.version}">
+        <feature>test-service-api</feature>
+        <feature>test-service-impl</feature>
+        <feature>test-command</feature>
+    </feature>
+
+
+    <feature name="test-service-api" version="${project.version}">
+        <bundle>mvn:com.imtf/test-service-api/${project.version}</bundle>
+    </feature>
+
+    <feature name="test-service-impl" version="${project.version}">
+        <feature>scr</feature>
+        <feature>test-service-api</feature>
+
+        <bundle>mvn:com.imtf/test-config/${project.version}</bundle>
+        <bundle>mvn:com.imtf/test-service-impl/${project.version}</bundle>
+
+        <!--        <bundle>mvn:org.slf4j/slf4j-api/${slf4j.version}</bundle>-->
+    </feature>
+
+
+    <feature name="test-command" version="${project.version}">
+        <details>Provides test commands</details>
+
+        <feature>test-service-api</feature>
+
+        <bundle>mvn:com.imtf/test-command/${project.version}</bundle>
+
+        <!--            <feature>shell</feature>-->
+        <!--            <bundle>mvn:org.osgi/osgi.cmpn/6.0.0</bundle>-->
+    </feature>
+
+</features>

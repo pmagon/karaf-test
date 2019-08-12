@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.imtf</groupId>
+    <artifactId>test</artifactId>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <felix.plugin.version>4.2.0</felix.plugin.version>
+        <!-- <felix.plugin.version>3.0.1</felix.plugin.version> -->
+
+        <karaf.version>4.2.6</karaf.version>
+        <!-- <karaf.version>4.1.2</karaf.version> -->
+
+
+        <osgi.core.version>6.0.0</osgi.core.version>
+        <osgi.compendium.version>6.0.0</osgi.compendium.version>
+        <!--                <osgi.compendium.version>5.0.0</osgi.compendium.version>-->
+
+        <slf4j.version>1.7.25</slf4j.version>
+
+
+        <!--************ PLUGINS *******************-->
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <!--        <maven-jar-plugin.version>2.4</maven-jar-plugin.version>-->
+        <!--        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>-->
+        <!--        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>-->
+        <!--        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>-->
+        <!--        <maven-dependency-plugin.version>3.0.0</maven-dependency-plugin.version>-->
+    </properties>
+
+
+    <modules>
+        <module>test-config</module>
+        <module>test-service-api</module>
+        <module>test-service-impl</module>
+        <module>test-command</module>
+        <module>test-feature</module>
+    </modules>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.imtf</groupId>
+                <artifactId>test-config</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.imtf</groupId>
+                <artifactId>test-service-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.imtf</groupId>
+                <artifactId>test-service-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.karaf</groupId>
+                <artifactId>apache-karaf</artifactId>
+                <version>${karaf.version}</version>
+                <type>zip</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.karaf.shell</groupId>
+                <artifactId>org.apache.karaf.shell.console</artifactId>
+                <version>${karaf.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.core</artifactId>
+                <version>${osgi.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.cmpn</artifactId>
+                <version>${osgi.compendium.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!--                <plugin>-->
+                <!--                    <groupId>org.apache.maven.plugins</groupId>-->
+                <!--                    <artifactId>maven-install-plugin</artifactId>-->
+                <!--                    <version>${maven-install-plugin.version}</version>-->
+                <!--                    &lt;!&ndash;                    <version>3.0.0-M1</version>&ndash;&gt;-->
+                <!--                </plugin>-->
+
+                <!--                <plugin>-->
+                <!--                    <groupId>org.apache.maven.plugins</groupId>-->
+                <!--                    <artifactId>maven-jar-plugin</artifactId>-->
+                <!--                    <version>${maven-jar-plugin.version}</version>-->
+                <!--                    &lt;!&ndash;                    <version>3.1</version>&ndash;&gt;-->
+                <!--                </plugin>-->
+
+                <!--                <plugin>-->
+                <!--                    <groupId>org.apache.maven.plugins</groupId>-->
+                <!--                    <artifactId>maven-dependency-plugin</artifactId>-->
+                <!--                    <version>${maven-dependency-plugin.version}</version>-->
+                <!--                    &lt;!&ndash;                    <version>3.1.1</version>&ndash;&gt;-->
+                <!--                </plugin>-->
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${felix.plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <extensions>true</extensions>
+                    <version>${karaf.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
