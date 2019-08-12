@@ -41,19 +41,24 @@
                     </execution>
 
 
-<!--                    <execution>-->
-<!--                        <id>compile</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>verify</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <descriptors>-->
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>file:${project.build.directory}/feature/feature.xml</descriptor>
+                            </descriptors>
+<!--                            <distribution>org.apache.karaf.features:framework</distribution>-->
 
-<!--                                <descriptor>file:${project.build.directory}/feature/feature.xml</descriptor>-->
-<!--                            </descriptors>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
+<!--                            <javase>1.8</javase>-->
+<!--                            <framework>-->
+<!--                                <feature>framework</feature>-->
+<!--                            </framework>-->
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
