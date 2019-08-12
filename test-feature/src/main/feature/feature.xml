@@ -27,7 +27,6 @@
 
         <bundle>mvn:com.imtf/test-service-impl/${project.version}</bundle>
 
-        <!--        <bundle>mvn:org.slf4j/slf4j-api/${slf4j.version}</bundle>-->
     </feature>
 
 
@@ -38,8 +37,6 @@
 
         <bundle>mvn:com.imtf/test-command/${project.version}</bundle>
 
-        <!--            <feature>shell</feature>-->
-        <!--            <bundle>mvn:org.osgi/osgi.cmpn/6.0.0</bundle>-->
     </feature>
 
 </features>
