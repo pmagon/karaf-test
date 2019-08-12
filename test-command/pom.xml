@@ -30,13 +30,22 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>karaf-services-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
-
                 <configuration>
                     <instructions>
-                        <Karaf-Commands>*</Karaf-Commands>
+                        <Private-Package>
+                            com.imtf.command
+                        </Private-Package>
+                        <Import-Package>
+                            org.apache.karaf.shell*;version="[4,5)",
+                            *
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>

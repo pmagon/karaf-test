@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>test-feature</artifactId>
-    <packaging>feature</packaging>
+    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
@@ -22,44 +22,76 @@
             <type>kar</type>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.karaf.features</groupId>
-            <artifactId>standard</artifactId>
-            <version>${karaf.version}</version>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.cmpn</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/feature</directory>
+                <filtering>true</filtering>
+                <targetPath>${project.build.directory}/feature</targetPath>
+            </resource>
+        </resources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>target/feature/feature.xml</file>
+                                    <type>xml</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
+                <version>${karaf.version}</version>
                 <executions>
                     <execution>
                         <id>verify</id>
-                        <phase>compile</phase>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>verify</goal>
                         </goals>
                         <configuration>
                             <descriptors>
+                                <descriptor>mvn:org.apache.karaf.features/framework/${karaf.version}/xml/features</descriptor>
+                                <descriptor>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</descriptor>
+                                <descriptor>mvn:org.apache.karaf.features/enterprise/${karaf.version}/xml/features</descriptor>
                                 <descriptor>file:${project.build.directory}/feature/feature.xml</descriptor>
                             </descriptors>
-
                             <distribution>org.apache.karaf.features:framework</distribution>
-
-<!--                            <javase>1.8</javase>-->
-<!--                            <framework>-->
-<!--                                <feature>framework</feature>-->
-<!--                            </framework>-->
+                            <javase>1.8</javase>
+                            <framework>
+                                <feature>framework</feature>
+                                <feature>shell</feature>
+                            </framework>
+                            <features>
+                                <feature>test</feature>
+                            </features>
                         </configuration>
                     </execution>
                 </executions>
