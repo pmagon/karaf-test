@@ -1,7 +1,6 @@
 package com.imtf.impl;
 
 import com.imtf.api.TestService;
-import com.imtf.config.TestConfig;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;

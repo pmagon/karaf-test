@@ -25,7 +25,6 @@
         <feature>scr</feature>
         <feature>test-service-api</feature>
 
-        <bundle>mvn:com.imtf/test-config/${project.version}</bundle>
         <bundle>mvn:com.imtf/test-service-impl/${project.version}</bundle>
 
         <!--        <bundle>mvn:org.slf4j/slf4j-api/${slf4j.version}</bundle>-->
