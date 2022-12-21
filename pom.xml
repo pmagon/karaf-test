@@ -16,7 +16,7 @@
         <felix.plugin.version>4.2.0</felix.plugin.version>
         <!-- <felix.plugin.version>3.0.1</felix.plugin.version> -->
 
-        <karaf.version>4.2.6</karaf.version>
+        <karaf.version>4.3.8</karaf.version>
         <!-- <karaf.version>4.1.2</karaf.version> -->
 
 
